@@ -1,113 +1,126 @@
-import Image from "next/image";
+import React from 'react';
+import { Search, Star, ArrowRight } from 'lucide-react';
 
-export default function Home() {
+const HomePage = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      <header className="container mx-auto px-4 py-6 flex justify-between items-center">
+        <div className="text-2xl font-bold text-blue-600">FinFuse</div>
+        <nav>
+          <ul className="flex space-x-6">
+            <li><a href="#" className="text-gray-600 hover:text-blue-600">How It Works</a></li>
+            <li><a href="#" className="text-gray-600 hover:text-blue-600">For Experts</a></li>
+            <li><a href="#" className="text-gray-600 hover:text-blue-600">Login</a></li>
+            <li><a href="#" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Sign Up</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main className="container mx-auto px-4 py-12">
+        <section className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">Find the Perfect Financial Expert for Your Business</h1>
+          <p className="text-xl text-gray-600 mb-8">Connect with top CFOs, accountants, and financial advisors tailored to your needs</p>
+          <div className="max-w-2xl mx-auto relative">
+            <input 
+              type="text" 
+              placeholder="Search for financial experts..." 
+              className="w-full px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-          </a>
+            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700">
+              <Search size={20} />
+            </button>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Featured Experts</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((expert) => (
+              <div key={expert} className="bg-white p-6 rounded-lg shadow-md">
+                <div className="flex items-center mb-4">
+                  <img src={`/api/placeholder/64/64`} alt="Expert" className="w-16 h-16 rounded-full mr-4" />
+                  <div>
+                    <h3 className="font-semibold text-lg">John Doe</h3>
+                    <p className="text-gray-600">CFO Consultant</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-4">Specializing in startup finance and growth strategies.</p>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <Star className="text-yellow-400 mr-1" size={16} />
+                    <span className="text-gray-700">4.9 (120 reviews)</span>
+                  </div>
+                  <a href="#" className="text-blue-600 hover:text-blue-800 flex items-center">
+                    View Profile <ArrowRight size={16} className="ml-1" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="text-center">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">How FinFuse Works</h2>
+          <p className="text-gray-600 mb-8">Connect with top financial experts in just a few simple steps</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Search", description: "Find experts based on your specific needs" },
+              { title: "Connect", description: "Message experts and schedule consultations" },
+              { title: "Collaborate", description: "Work together to achieve your financial goals" }
+            ].map((step, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                <div className="text-3xl font-bold text-blue-600 mb-4">{index + 1}</div>
+                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <footer className="bg-gray-100 mt-12">
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h4 className="font-semibold mb-4">For Businesses</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Find an Expert</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">How It Works</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Pricing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">For Experts</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Join as an Expert</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Expert Resources</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Success Stories</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">About Us</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Careers</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Press</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Support</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Help Center</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Contact Us</a></li>
+                <li><a href="#" className="text-gray-600 hover:text-blue-600">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-gray-200 text-center text-gray-600">
+            © 2024 FinFuse. All rights reserved.
+          </div>
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      </footer>
+    </div>
   );
-}
+};
+
+export default HomePage;
